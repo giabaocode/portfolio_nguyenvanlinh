@@ -14,6 +14,6 @@ if (extras.length) throw new Error('public/ contains unexpected files. Inspect t
 for (const name of files) await copyFile(path.join(root, name), path.join(output, name));
 const html = await readFile(path.join(output, 'index.html'), 'utf8');
 for (const name of files.filter(name => /\.(css|js)$/.test(name))) {
-  if (!html.includes(`"${name}"`)) throw new Error(`Unreferenced asset: ${name}`);
+  if (!html.includes(`"${name}"`) && !html.includes(`"${name}?`)) throw new Error(`Unreferenced asset: ${name}`);
 }
 console.log(`Ready to deploy: ${files.length} public files. Local secrets and repository files excluded.`);
