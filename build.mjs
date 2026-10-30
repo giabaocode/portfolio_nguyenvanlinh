@@ -5,7 +5,7 @@ import path from 'node:path';
 const root = path.dirname(fileURLToPath(import.meta.url));
 const output = path.join(root, 'public');
 const files = [
-  'index.html', 'style.css', 'motion.css', 'hero.css',
+  'index.html', 'style.css', 'motion.css', 'hero.css', 'responsive.css',
   'script.js', 'petals.js', 'hero.js', '_headers', 'robots.txt',
 ];
 await mkdir(output, { recursive: true });
