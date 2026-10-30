@@ -34,9 +34,14 @@
     button.disabled = reduceMotion.matches;
     const icon = document.createElement('span');
     icon.setAttribute('aria-hidden', 'true');
-    icon.textContent = paused ? '▷' : '❚❚';
+    const svg = document.createElementNS('http://www.w3.org/2000/svg','svg');
+    svg.setAttribute('viewBox','0 0 16 16');
+    const path = document.createElementNS('http://www.w3.org/2000/svg','path');
+    path.setAttribute('fill','currentColor');
+    path.setAttribute('d',paused ? 'M4 2v12l9-6Z' : 'M4 2h3v12H4Zm5 0h3v12H9Z');
+    svg.append(path); icon.append(svg);
     const label = document.createElement('span');
-    label.textContent = reduceMotion.matches ? 'Đã giảm chuyển động' : paused ? 'Tiếp tục hoa rơi' : 'Dừng hoa rơi';
+    label.textContent = reduceMotion.matches ? 'Giảm chuyển động' : paused ? 'Đã tạm dừng' : 'Chuyển động';
     button.setAttribute('aria-label', reduceMotion.matches ? 'Chuyển động đã tắt theo cài đặt thiết bị' : paused ? 'Tiếp tục chuyển động hoa và cánh hoa rơi' : 'Tạm dừng chuyển động hoa và cánh hoa rơi');
     button.replaceChildren(icon, label);
   }

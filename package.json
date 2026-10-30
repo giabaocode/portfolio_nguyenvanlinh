@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "three": "0.187.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.28.2"
+  },
+  "name": "portfolio-nguyenvanlinh",
+  "private": true,
+  "scripts": {
+    "build:3d": "esbuild desk3d.source.js --bundle --minify --format=esm --target=es2020 --outfile=desk3d.js",
+    "build": "npm run build:3d && node build.mjs"
+  }
+}

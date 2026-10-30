@@ -11,8 +11,9 @@ Repo hiện được công khai để dùng GitHub Pages. Có sẵn cấu hình 
 ## Trải nghiệm trên trang
 
 - Đường biểu đồ minh họa được vẽ một lần, sau đó hoa vàng mở cánh và chuyển động nhẹ.
-- Góc bàn tương tác gồm hồ sơ dự án, sổ ghi chú, ảnh minh họa và danh thiếp liên hệ.
-- Trên điện thoại, các món trên bàn xếp thành hai cột và mở bằng thao tác chạm.
+- Bàn 3D Three.js có mặt gỗ, chân bàn, đèn, bàn phím, cây và ly cà phê. Có thể kéo ngang để đổi góc nhìn hoặc chọn hồ sơ, sổ, ảnh và danh thiếp.
+- Trên điện thoại, có bốn nút HTML tương đương để dễ chạm và dùng bằng bàn phím. Nếu WebGL hoặc mạng không tải được mô-đun, góc bàn HTML vẫn hoạt động.
+- Mô-đun 3D chỉ tải khi gần vùng hiển thị, dừng chuyển động khi ra ngoài màn hình, khi mở cửa sổ hoặc khi người dùng yêu cầu giảm chuyển động.
 - Nút dừng chuyển động, chế độ giảm chuyển động của thiết bị và các cửa sổ nội dung được hỗ trợ.
 - Nội dung cá nhân trong góc bàn đang là phần chờ bổ sung; biểu đồ trang trí không dùng dữ liệu thị trường thực tế.
 
@@ -24,9 +25,18 @@ python3 -m http.server 4173
 
 Mở http://localhost:4173 trong trình duyệt.
 
+Sau khi chỉnh `desk3d.source.js`, tạo lại bản đóng gói:
+
+```sh
+npm ci
+npm run build
+```
+
+`desk3d.js` là artifact đã đóng gói và được commit để GitHub Pages phục vụ trực tiếp. Three.js và esbuild được khóa phiên bản trong `package-lock.json`. Bản quyền Three.js nằm trong `THREE-LICENSE.txt`.
+
 ## Triển khai Netlify
 
-Website dùng HTML, CSS và JavaScript thuần. Lệnh `node build.mjs` tạo thư mục `public/` với đúng các file cần đưa lên hosting. Không cần cài thư viện hoặc cấu hình API key.
+Website là trang tĩnh HTML/CSS/JavaScript với mô-đun Three.js đã đóng gói. Lệnh `node build.mjs` sao chép bản đã đóng gói cùng các file giao diện vào `public/`. Không cần API key khi khách truy cập website.
 
 `netlify.toml` đã khai báo:
 
