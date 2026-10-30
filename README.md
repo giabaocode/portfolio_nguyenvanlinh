@@ -4,7 +4,17 @@ Portfolio prototype cho Nguyễn Văn Linh, theo phong cách tối giản với 
 
 ## Hosting
 
-Giữ repo GitHub ở chế độ Private. Prototype được chuẩn bị để triển khai trên Netlify; URL chính thức sẽ được cập nhật sau khi deploy.
+Prototype đang chạy trên GitHub Pages: https://giabaocode.github.io/portfolio_nguyenvanlinh/
+
+Repo hiện được công khai để dùng GitHub Pages. Có sẵn cấu hình Netlify nếu cần chuyển hosting sau này.
+
+## Trải nghiệm trên trang
+
+- Đường biểu đồ minh họa được vẽ một lần, sau đó hoa vàng mở cánh và chuyển động nhẹ.
+- Góc bàn tương tác gồm hồ sơ dự án, sổ ghi chú, ảnh minh họa và danh thiếp liên hệ.
+- Trên điện thoại, các món trên bàn xếp thành hai cột và mở bằng thao tác chạm.
+- Nút dừng chuyển động, chế độ giảm chuyển động của thiết bị và các cửa sổ nội dung được hỗ trợ.
+- Nội dung cá nhân trong góc bàn đang là phần chờ bổ sung; biểu đồ trang trí không dùng dữ liệu thị trường thực tế.
 
 ## Chạy trên máy
 

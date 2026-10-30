@@ -3,7 +3,9 @@ const projects = {
   consumer: { label: 'DỰ ÁN MẪU 02 / NGHIÊN CỨU THỊ TRƯỜNG', title: 'Tìm hiểu người tiêu dùng', description: 'Ví dụ về một nghiên cứu nhu cầu và thói quen mua sắm.', question: 'Điều gì tác động đến cách người tiêu dùng lựa chọn?', approach: 'Xây dựng câu hỏi nghiên cứu, phân nhóm quan sát và chuyển kết quả thành những góc nhìn dễ tiếp cận.', deliverable: 'Bản tổng hợp nghiên cứu cùng các đề xuất. Phương pháp, mẫu nghiên cứu và kết quả sẽ được cập nhật theo dự án thật.' },
   finance: { label: 'DỰ ÁN MẪU 03 / TÀI CHÍNH & DỮ LIỆU', title: 'Phân tích tài chính', description: 'Ví dụ về một bài phân tích báo cáo tài chính có biểu đồ đi kèm.', question: 'Làm thế nào để biến những bảng số liệu thành thông tin hữu ích?', approach: 'Tổ chức dữ liệu, xác định chỉ số phù hợp và trình bày các mối liên hệ qua biểu đồ.', deliverable: 'Một dashboard hoặc bản phân tích có chú thích. Các chỉ số trên trang hiện tại hoàn toàn là minh họa bố cục.' }
 };
-function openDialog(dialog) { dialog.showModal(); document.body.classList.add('modal-open'); }
+function syncDialogState() { document.body.classList.toggle('modal-open', Boolean(document.querySelector('dialog[open]'))); }
+function openDialog(dialog) { dialog.showModal(); syncDialogState(); }
+function closeDialog(dialog) { dialog.close(); syncDialogState(); }
 document.querySelectorAll('[data-project]').forEach(button => button.addEventListener('click', () => {
   const project = projects[button.dataset.project];
   document.querySelector('#dialog-label').textContent = project.label;
@@ -19,9 +21,9 @@ document.querySelectorAll('[data-project]').forEach(button => button.addEventLis
 }));
 document.querySelector('#contact-button').addEventListener('click', () => openDialog(document.querySelector('#contact-dialog')));
 document.querySelectorAll('dialog').forEach(dialog => {
-  dialog.querySelectorAll('.dialog-close,.dialog-done').forEach(button => button.addEventListener('click', () => dialog.close()));
-  dialog.addEventListener('close', () => document.body.classList.remove('modal-open'));
-  dialog.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) dialog.close(); } });
+  dialog.querySelectorAll('.dialog-close,.dialog-done').forEach(button => button.addEventListener('click', () => closeDialog(dialog)));
+  dialog.addEventListener('close', syncDialogState);
+  dialog.addEventListener('click', event => { if (event.target === dialog) { const box = dialog.getBoundingClientRect(); if (event.clientX < box.left || event.clientX > box.right || event.clientY < box.top || event.clientY > box.bottom) closeDialog(dialog); } });
 });
 const navigation = [...document.querySelectorAll('nav a')];
 const observer = new IntersectionObserver(entries => {

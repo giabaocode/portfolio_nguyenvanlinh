@@ -1,0 +1,130 @@
+/* The opening is a short sequence; the chart then stays still. */
+.hero-data-lines { position:absolute; inset:3%; width:94%; height:94%; pointer-events:none; overflow:visible; }
+.hero-data-lines .chart-guide { stroke:#b9bea3; stroke-width:.7; opacity:.3; }
+.hero-data-lines .chart-trace { fill:none; stroke:#ad923d; stroke-width:1.1; opacity:.42; stroke-dasharray:1; stroke-dashoffset:0; animation:draw-chart 1100ms cubic-bezier(.2,0,.2,1) both; }
+.hero-data-lines .chart-trace.secondary { stroke:#82927a; opacity:.27; animation-delay:120ms; }
+.hero-data-lines .chart-dot { fill:#b99b40; animation:chart-dot-in 400ms ease-out 850ms both; transform-box:fill-box; transform-origin:center; }
+@keyframes draw-chart { from{stroke-dashoffset:1} to{stroke-dashoffset:0} }
+@keyframes chart-dot-in { from{opacity:0;transform:scale(.4)} to{opacity:.6;transform:scale(1)} }
+.hero .flower > span {
+  animation:open-flower 1250ms cubic-bezier(.16,.7,.25,1) both, sculpted-petal 18s cubic-bezier(.4,0,.2,1) infinite;
+  animation-delay:calc(1050ms + var(--n)*30ms),calc(2800ms + var(--n)*1800ms);
+}
+@keyframes open-flower {
+  from{transform:rotate(calc(var(--n)*36deg - 12deg)) scale(.35,.12);opacity:.25}
+  55%{opacity:1}
+  to{transform:rotate(calc(var(--n)*36deg)) scale(1);opacity:1}
+}
+body.motion-paused .hero-name, body.motion-paused .hero-art { animation:none; opacity:1; translate:none; }
+
+.desk-section { padding-bottom:10px; }
+.desk-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:30px; margin:35px 0 28px; }
+.desk-heading h2 { margin:0; font-size:38px; }
+.desk-heading p { margin:0 0 7px; font-size:11px; color:var(--muted); max-width:240px; }
+.desk-stage {
+  height:530px; position:relative; isolation:isolate; overflow:hidden;
+  border:1px solid #dfdfd0; border-radius:8px;
+  background:radial-gradient(ellipse at 24% 5%,#fffdf2a3,transparent 60%),repeating-linear-gradient(3deg,transparent 0 80px,#bbb29308 81px 82px),#ecebdf;
+  box-shadow:inset 0 1px 0 #fff9;
+}
+.desk-stage::before { content:''; position:absolute; width:630px; height:630px; border:1px solid #cbc5aa50; border-radius:50%; right:-290px; top:-350px; pointer-events:none; }
+.desk-caption { position:absolute; left:27px; top:22px; color:#92917b; font-size:8px; letter-spacing:1.8px; }
+.desk-item {
+  --turn:0deg; position:absolute; display:block; border:0; padding:0;
+  background:transparent; text-align:left; color:var(--ink); appearance:none;
+  transform:rotate(var(--turn)); transform-origin:center;
+  transition:transform 350ms cubic-bezier(.2,0,0,1),filter 350ms;
+  -webkit-tap-highlight-color:transparent;
+}
+.desk-item:focus-visible { outline:2px solid #aa812b; outline-offset:9px; border-radius:4px; }
+.desk-item:active { transform:rotate(var(--turn)) scale(.98); }
+.desk-item-label { display:flex; justify-content:space-between; align-items:center; gap:8px; font-size:16px; line-height:1.5; font-weight:500; letter-spacing:-.5px; }
+.desk-item-label svg { width:18px; height:18px; flex-shrink:0; }
+.desk-item small { display:block; font-size:8px; font-weight:400; letter-spacing:1px; }
+.desk-folder { --turn:-7deg; width:255px; height:210px; left:7%; top:30%; z-index:3; }
+.folder-back { position:absolute; inset:0; background:#cbb575; border-radius:3px 7px 6px 6px; box-shadow:1px 15px 25px #51452621; }
+.folder-back::before { content:''; position:absolute; left:0; top:-22px; width:43%; height:24px; background:#cbb575; border-radius:8px 12px 0 0; }
+.folder-paper { position:absolute; inset:8px 12px 6px; background:#fcfbf3; border:1px solid #e2dfcf; transform:rotate(3deg); }
+.folder-paper::after { content:''; position:absolute; inset:20px; background:repeating-linear-gradient(transparent 0 12px,#d6d8c7 13px,transparent 14px); opacity:.6; }
+.folder-front { position:absolute; inset:35px 0 0; padding:40px 22px 18px; border-radius:3px 4px 6px 6px; background:linear-gradient(145deg,#e7d49b,#d9c185); border:1px solid #d1b979; box-shadow:0 -1px 6px #7f6c2510; }
+.folder-front small { margin-top:15px; color:#857342; }
+.folder-front::before { content:'01'; display:block; font-family:Georgia,serif; font-size:29px; line-height:1; color:#9e8747; margin-bottom:8px; }
+.desk-notebook { --turn:5deg; width:215px; height:280px; left:37%; top:13%; z-index:2; border-radius:3px 8px 8px 3px; background:#687564; box-shadow:4px 15px 25px #3a46352b,inset -7px 0 0 #8e9781; padding:32px 23px 25px 30px; color:#f5f3e4; }
+.desk-notebook::before { content:''; position:absolute; left:10px; top:0; bottom:0; width:1px; background:#a1ab9080; }
+.desk-notebook::after { content:''; position:absolute; width:13px; height:47px; background:#d9bd68; right:26px; bottom:-15px; clip-path:polygon(0 0,100% 0,100% 100%,50% 83%,0 100%); z-index:-1; }
+.notebook-edition { display:block; font-size:7px; letter-spacing:2px; color:#d1d4bc; }
+.notebook-title { display:block; font-family:Georgia,serif; font-size:33px; line-height:1.2; font-weight:400; margin-top:34px; letter-spacing:-1px; }
+.desk-notebook .desk-item-label { margin-top:39px; font-size:9px; font-weight:400; letter-spacing:0; }
+.desk-photo { --turn:8deg; width:210px; height:263px; right:8%; top:16%; padding:12px 12px 18px; background:#fffef6; box-shadow:2px 13px 22px #51452620; z-index:1; }
+.desk-photo::before { content:''; width:67px; height:24px; position:absolute; left:65px; top:-12px; background:#dbca9590; transform:rotate(-5deg); }
+.photo-art { display:block; width:100%; height:183px; background:#e4e7da; }
+.desk-photo .desk-item-label { margin-top:16px; font-family:Georgia,serif; font-size:17px; font-weight:400; }
+.desk-card { --turn:-4deg; left:46%; bottom:9%; width:252px; height:137px; padding:21px 23px; background:#fbfaf1; border:1px solid #e2dfcd; box-shadow:1px 10px 17px #5145261c; z-index:4; }
+.card-name { font-size:21px; letter-spacing:-.7px; font-weight:500; line-height:1.2; display:block; }
+.desk-card small { color:#848777; margin-top:5px; letter-spacing:.7px; font-size:7px; }
+.desk-card .desk-item-label { border-top:1px solid #dedecf; padding-top:10px; margin-top:11px; font-size:9px; letter-spacing:0; font-weight:400; }
+.desk-petal { position:absolute; width:27px; height:48px; border-radius:85% 15% 75% 20%; background:linear-gradient(130deg,#f2d77d,#cfa43caa); box-shadow:inset 2px 2px 6px #fff2b4aa,3px 5px 5px #8f742413; pointer-events:none; }
+.desk-petal.p-one { right:8%; bottom:14%; transform:rotate(52deg); }
+.desk-petal.p-two { left:25%; bottom:10%; width:17px; height:32px; transform:rotate(-24deg); }
+.desk-petal.p-three { right:32%; top:10%; width:17px; height:30px; transform:rotate(12deg); }
+.desk-bottom-label { position:absolute; bottom:20px; left:26px; font-size:7px; letter-spacing:1.8px; color:#959581; }
+.desk-pen { position:absolute; width:9px; height:150px; bottom:5%; left:36%; background:linear-gradient(90deg,#555b4f,#8d947e 50%,#555b4f); transform:rotate(33deg); border-radius:3px 3px 1px 1px; box-shadow:3px 6px 9px #47463120; pointer-events:none; }
+.desk-pen::after { content:''; position:absolute; width:9px; height:20px; background:#c4ab64; bottom:-17px; clip-path:polygon(0 0,100% 0,50% 100%); }
+.desk-section.is-seen .desk-item { animation:desk-arrive 650ms cubic-bezier(.2,0,0,1) backwards; animation-delay:var(--arrival,0ms); }
+body.motion-paused .desk-section.is-seen .desk-item { animation:none; opacity:1; }
+@keyframes desk-arrive { from{opacity:0;transform:translateY(18px) rotate(calc(var(--turn) - 2deg))} to{opacity:1;transform:translateY(0) rotate(var(--turn))} }
+.desk-dialog-illustration { width:100%; max-height:230px; margin-top:20px; border-radius:4px; }
+.desk-dialog-body { margin:18px 0 0; font-size:12px; color:var(--muted); line-height:2; }
+.desk-dialog-note { margin-top:22px; padding-top:16px; border-top:1px solid var(--line); font-size:10px; color:#90947f; }
+@media (hover:hover) and (pointer:fine) {
+  .desk-item:hover { transform:translateY(-9px) rotate(calc(var(--turn) + 1deg)); filter:brightness(1.025); }
+}
+@media (min-width:761px) and (max-width:1050px) {
+  .desk-stage { height:490px; }
+  .desk-folder { width:215px; height:185px; left:5%; }
+  .desk-notebook { width:180px; height:250px; left:36%; }
+  .notebook-title { font-size:29px; }
+  .desk-photo { width:175px; height:235px; right:5%; }
+  .photo-art { height:155px; }
+  .desk-photo::before { left:50px; }
+  .desk-photo .desk-item-label { font-size:14px; }
+  .desk-card { left:42%; width:235px; bottom:7%; }
+  .desk-pen { left:32%; }
+}
+@media (max-width:760px) {
+  .desk-heading { display:block; margin-top:25px; }
+  .desk-heading h2 { font-size:30px; }
+  .desk-heading p { margin-top:15px; max-width:none; font-size:11px; }
+  .desk-stage { height:auto; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); align-items:center; column-gap:20px; row-gap:28px; padding:53px 19px 46px; }
+  .desk-caption { top:16px; left:19px; font-size:6px; }
+  .desk-item { position:relative; inset:auto; width:100%; min-width:0; }
+  .desk-folder { height:150px; --turn:-5deg; }
+  .folder-back::before { height:16px; top:-14px; }
+  .folder-front { inset:22px 0 0; padding:24px 12px 12px; }
+  .folder-front::before { font-size:24px; margin-bottom:5px; }
+  .desk-item-label { font-size:13px; }
+  .desk-item-label svg { width:14px; height:14px; }
+  .folder-front small { margin-top:10px; font-size:6px; letter-spacing:.6px; }
+  .desk-notebook { height:185px; padding:21px 13px 17px 20px; --turn:4deg; }
+  .notebook-edition { font-size:6px; letter-spacing:1px; }
+  .notebook-title { font-size:25px; margin-top:22px; }
+  .desk-notebook .desk-item-label { margin-top:24px; font-size:8px; }
+  .desk-notebook::after { right:15px; width:10px; height:32px; bottom:-10px; }
+  .desk-photo { height:auto; padding:8px 8px 13px; --turn:-4deg; }
+  .photo-art { height:auto; aspect-ratio:1; }
+  .desk-photo::before { width:45%; left:27%; height:18px; top:-9px; }
+  .desk-photo .desk-item-label { font-size:13px; margin-top:12px; }
+  .desk-card { height:auto; min-height:114px; padding:17px 12px; --turn:5deg; }
+  .card-name { font-size:20px; }
+  .desk-card small { font-size:6px; letter-spacing:.2px; }
+  .desk-card .desk-item-label { font-size:8px; margin-top:13px; padding-top:9px; }
+  .desk-petal.p-one { right:5%; bottom:4%; width:17px; height:28px; }
+  .desk-petal.p-two { left:43%; bottom:42%; width:13px; height:23px; }
+  .desk-petal.p-three, .desk-pen { display:none; }
+  .desk-bottom-label { left:19px; bottom:15px; font-size:6px; letter-spacing:1px; }
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero-data-lines .chart-trace { stroke-dashoffset:0; }
+  .hero-data-lines .chart-dot { opacity:.6; }
+  .desk-section.is-seen .desk-item { animation:none; }
+}
