@@ -2,3 +2,5 @@
 .env*
 .openai/
 __pycache__/
+public/
+.netlify/

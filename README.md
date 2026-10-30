@@ -2,9 +2,9 @@
 
 Portfolio prototype cho Nguyễn Văn Linh, theo phong cách tối giản với hoa vàng và cánh hoa rơi.
 
-## Xem website
+## Hosting
 
-https://giabaocode.github.io/portfolio_nguyenvanlinh/
+Giữ repo GitHub ở chế độ Private. Prototype được chuẩn bị để triển khai trên Netlify; URL chính thức sẽ được cập nhật sau khi deploy.
 
 ## Chạy trên máy
 
@@ -14,11 +14,21 @@ python3 -m http.server 4173
 
 Mở http://localhost:4173 trong trình duyệt.
 
-## GitHub Pages
+## Triển khai Netlify
 
-Settings → Pages → Deploy from a branch → main → /(root).
+Website dùng HTML, CSS và JavaScript thuần. Lệnh `node build.mjs` tạo thư mục `public/` với đúng các file cần đưa lên hosting. Không cần cài thư viện hoặc cấu hình API key.
 
-Website dùng HTML, CSS và JavaScript thuần, không cần build hoặc API key. Các đường dẫn tài nguyên dùng đường dẫn tương đối để hoạt động trong thư mục project của GitHub Pages. File `.nojekyll` tắt bước xử lý Jekyll.
+`netlify.toml` đã khai báo:
+
+- Build command: `node build.mjs`
+- Publish directory: `public`
+- Production branch khi kết nối Git: `main`
+
+Có thể tải thư mục `public/` lên Netlify Drop sau khi đăng nhập tài khoản của chủ dự án. Cách này không yêu cầu Netlify quyền truy cập GitHub. Nếu muốn tự deploy khi push, kết nối riêng repo Private này từ Netlify và chỉ cấp quyền cho repo cần thiết.
+
+Prototype có `robots.txt` và header `X-Robots-Tag: noindex, nofollow` để đề nghị công cụ tìm kiếm không lập chỉ mục. Đây không phải cơ chế mật khẩu hay giới hạn người truy cập.
+
+Tham khảo [Netlify deploy](https://docs.netlify.com/deploy/create-deploys/) và [file-based configuration](https://docs.netlify.com/build/configure-builds/file-based-configuration/).
 
 ## Nội dung prototype
 
