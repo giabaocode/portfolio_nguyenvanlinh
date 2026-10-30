@@ -1,5 +1,13 @@
 /* Keep the layout viewport independent of decorative artwork. */
 html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+.asterisk-icon {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -.125em;
+  flex-shrink: 0;
+}
+.brand-mark { display: inline-flex; line-height: 1; }
 .hero { grid-template-columns: minmax(0,1.05fr) minmax(0,1fr); }
 .hero > *, .about-layout > *, .journey-layout > *, .project-card { min-width: 0; }
 .project-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
